@@ -1,0 +1,122 @@
+{
+    "log_level": "info",
+    "aim_range": 150,
+    "aimBot": true,
+    "confidence": 0.43,
+    "aim_speed_x": 4.5,
+    "aim_speed_y": 4.5,
+    "model_file": "C:/Users/admin/Desktop/Sudaneseboy-v5/Model/APWWWWV5.onnx",
+    "mouse_Side_Button_Witch": false,
+    "ProcessMode": "single_process",
+    "window_always_on_top": false,
+    "target_class": "ALL",
+    "lockKey": "VK_LBUTTON",
+    "triggerType": "按下",
+    "offset_centery": -0.4,
+    "offset_centerx": 0.0,
+    "screen_pixels_for_360_degrees": 6550,
+    "screen_height_pixels": 3220,
+    "near_speed_multiplier": 2.5,
+    "slow_zone_radius": 0,
+    "mouseMoveMode": "按鍵魔盒-鍵鼠轉接器",
+    "lockSpeed": 5.5,
+    "jump_suppression_switch": false,
+    "jump_suppression_fluctuation_range": 10,
+    "yolo_device": "GPU",
+    "aim_range_display": true,
+    "side_key_lock": true,
+    "kalman_filter": false,
+    "kalman_q": 0.0961,
+    "kalman_r": 0.036,
+    "kalman_delay": 1.0,
+    "auto_scale_aim_range": true,
+    "auto_scale_factor": 1.1,
+    "prediction": false,
+    "prediction_delay": 1.0,
+    "prediction_offset": 0.144,
+    "prediction_threshold": 30,
+    "prediction_time": 0.2,
+    "model_size": 320,
+    "mouse_threading": false,
+    "mouse_move_mode": "按鍵魔盒-鍵鼠轉接器",
+    "side_lock_key": "VK_XBUTTON1",
+    "side_key_lock_enabled": true,
+    "recoil_control_enabled": false,
+    "recoil_y_strength": 1,
+    "recoil_delay": 41,
+    "recoil_trigger_keys": "VK_LBUTTON+VK_RBUTTON",
+    "overlay_color_r": [
+        85,
+        255,
+        255,
+        186
+    ],
+    "overlay_color_g": [
+        85,
+        255,
+        255,
+        186
+    ],
+    "overlay_color_b": [
+        85,
+        255,
+        255,
+        186
+    ],
+    "overlay_color_a": [
+        85,
+        255,
+        255,
+        186
+    ],
+    "overlay_lock_color_r": [
+        255,
+        0,
+        0,
+        89
+    ],
+    "overlay_lock_color_g": [
+        255,
+        0,
+        0,
+        89
+    ],
+    "overlay_lock_color_b": [
+        255,
+        0,
+        0,
+        89
+    ],
+    "overlay_lock_color_a": [
+        255,
+        0,
+        0,
+        89
+    ],
+    "mouse_slow_down_enabled": true,
+    "mouse_slow_down_factor": 0.01,
+    "mouse_slow_down_radius": 112,
+    "show_fps_overlay": true,
+    "recoil_x_strength": 0,
+    "show_detection_boxes": true,
+    "ui_refresh_rate": 60,
+    "detection_boxes_refresh_rate": 60,
+    "overlay_color": [
+        85,
+        255,
+        255,
+        186
+    ],
+    "overlay_lock_color": [
+        255,
+        0,
+        0,
+        89
+    ],
+    "capture_fps": 65,
+    "yolo_version": "v5",
+    "iou_threshold": 0.9,
+    "model_type": "custom",
+    "selected_builtin_model": "",
+    "custom_model_file": "C:/Users/admin/Desktop/Sudaneseboy-v5/Model/APWWWWV5.onnx"
+}

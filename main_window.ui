@@ -1,0 +1,1213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>main</class>
+ <widget class="QMainWindow" name="main">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>300</width>
+    <height>700</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>AI AIMBOT</string>
+  </property>
+  <property name="styleSheet">
+   <string>
+#MainWindow {
+   background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(20, 20, 20, 255), stop:1 rgba(0, 0, 0, 255));
+}
+QWidget#control_panel {
+   background-color: rgba(30, 30, 30, 230);
+   border-radius: 15px;
+   border: 1px solid #00ffcc;
+}
+QLabel {
+   color: #00ffcc;
+   font-size: 13px;
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   background-color: transparent; /* 確保 QLabel 背景透明 */
+}
+QLabel#video_label {
+   border: 1px solid #00ffcc;
+   background-color: black;
+}
+QLineEdit, QTextEdit {
+   background-color: #1a1a1a;
+   color: #00ffcc;
+   border-radius: 8px;
+   padding: 5px 8px;
+   border: 1px solid #444;
+   font-size: 12px;
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+QLineEdit:focus, QTextEdit:focus {
+   border: 1px solid #00aaff;
+}
+QLineEdit[readOnly="true"] {
+   background-color: #2a2a2a;
+}
+QPushButton {
+   background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #007bff, stop:1 #00ffcc);
+   color: white;
+   border-radius: 10px;
+   padding: 8px 12px;
+   font-size: 12px;
+   font-weight: bold;
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   border: none;
+}
+QPushButton:hover {
+   background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #0056b3, stop:1 #00cc99);
+}
+QPushButton:pressed {
+   background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #003f7f, stop:1 #009977);
+}
+QPushButton:checkable:checked {
+   background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #00cc99, stop:1 #0056b3);
+   border: 1px solid #00ffcc;
+}
+QPushButton#minimize_button, QPushButton#close_button {
+   background-color: transparent;
+   border: none;
+   color: #00ffcc;
+   font-size: 16px;
+   font-weight: bold;
+}
+QPushButton#minimize_button:hover, QPushButton#close_button:hover {
+   background-color: rgba(255, 255, 255, 0.2);
+}
+QPushButton#minimize_button:pressed, QPushButton#close_button:pressed {
+   background-color: rgba(255, 255, 255, 0.4);
+}
+QCheckBox {
+   color: #00ffcc;
+   font-size: 12px;
+   spacing: 5px;
+   background-color: transparent;
+}
+QCheckBox::indicator {
+   width: 15px;
+   height: 15px;
+   border: 1px solid #555;
+   border-radius: 4px;
+   background-color: #1a1a1a;
+}
+QCheckBox::indicator:checked {
+   background-color: #00ffcc;
+   border: 1px solid #00ffcc;
+}
+QComboBox {
+   background-color: #1a1a1a;
+   color: #00ffcc;
+   border: 1px solid #444;
+   border-radius: 8px;
+   padding: 5px 8px;
+}
+QComboBox:on {
+   border: 1px solid #00aaff;
+}
+QComboBox::drop-down {
+   border: none;
+}
+QComboBox QAbstractItemView {
+   background-color: #2a2a2a;
+   color: #00ffcc;
+   selection-background-color: #007bff;
+   border: 1px solid #555;
+   border-radius: 5px;
+}
+QSlider::groove:horizontal {
+   border: 1px solid #444;
+   height: 8px;
+   background: #1a1a1a;
+   margin: 2px 0;
+   border-radius: 4px;
+}
+QSlider::handle:horizontal {
+   background: #00ffcc;
+   border: 1px solid #00ffcc;
+   width: 16px;
+   margin: -4px 0;
+   border-radius: 8px;
+}
+QGroupBox {
+   color: #00ffcc;
+   font-weight: bold;
+   border: 1px solid #444;
+   border-radius: 10px;
+   margin-top: 10px;
+   background-color: rgba(40, 40, 40, 180);
+}
+QGroupBox::title {
+   subcontrol-origin: margin;
+   subcontrol-position: top center;
+   padding: 0 8px;
+   background-color: #1a1a1a;
+   border-radius: 5px;
+   border: 1px solid #444;
+}
+QTabWidget::pane {
+   border: 1px solid #444;
+   border-radius: 10px;
+   background-color: rgba(30, 30, 30, 230);
+}
+QTabBar::tab {
+   background: #1a1a1a;
+   color: #aaa;
+   border: 1px solid #444;
+   border-bottom: none;
+   padding: 8px 15px;
+   border-top-left-radius: 8px;
+   border-top-right-radius: 8px;
+}
+QTabBar::tab:selected {
+   background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #007bff, stop:1 #00ffcc);
+   color: white;
+   font-weight: bold;
+}
+QTabBar::tab:hover {
+   background: #3a3a3a;
+}
+QStatusBar {
+   color: #00ffcc;
+}
+QMenuBar {
+   background-color: #1a1a1a;
+   color: #00ffcc;
+}
+QMenuBar::item {
+   background-color: transparent;
+   padding: 4px 8px;
+}
+QMenuBar::item:selected {
+   background-color: #007bff;
+   color: white;
+}
+QMenu {
+   background-color: #2a2a2a;
+   color: #00ffcc;
+   border: 1px solid #555;
+}
+QMenu::item:selected {
+   background-color: #007bff;
+}
+QMessageBox {
+    background-color: white;
+}
+QMessageBox QLabel {
+    color: black;
+    font-size: 14px;
+}
+   </string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">#centralwidget { background-color: transparent; }</string>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_11">
+    <item>
+     <widget class="QWidget" name="control_panel">
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <property name="leftMargin">
+        <number>10</number>
+       </property>
+       <property name="topMargin">
+        <number>10</number>
+       </property>
+       <property name="rightMargin">
+        <number>10</number>
+       </property>
+       <property name="bottomMargin">
+        <number>10</number>
+       </property>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QLabel" name="title_label">
+           <property name="text">
+            <string>AI AIMBOT</string>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">
+font-size: 20px;
+font-weight: bold;
+color: #00ffcc;
+font-family: 'Verdana', 'Geneva', sans-serif;
+</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="minimize_button">
+           <property name="text">
+            <string>-</string>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>30</width>
+             <height>30</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="close_button">
+           <property name="text">
+            <string>X</string>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>30</width>
+             <height>30</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="model_selection_layout">
+         <item>
+          <widget class="QLabel" name="model_label">
+           <property name="text">
+            <string>自訂模型:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="model_path_display">
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="choose_model_button">
+           <property name="text">
+            <string>選擇模型</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="yolo_version_combobox"/>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="config_display_layout">
+         <item>
+          <widget class="QLabel" name="config_file_label">
+           <property name="text">
+            <string>當前設定:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="config_file_display">
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="save_config_button">
+           <property name="text">
+            <string>保存設定</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="import_button">
+           <property name="text">
+            <string>導入設定</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="export_button">
+           <property name="text">
+            <string>導出設定</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QTabWidget" name="tabWidget">
+         <property name="currentIndex">
+          <number>0</number>
+         </property>
+         <widget class="QWidget" name="aim_tab">
+          <attribute name="title">
+           <string>瞄準設定</string>
+          </attribute>
+          <layout class="QVBoxLayout" name="verticalLayout_aim">
+           <item>
+            <widget class="QGroupBox" name="offset_groupbox">
+             <property name="title">
+              <string>瞄準點比例偏移</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_offset">
+              <item row="0" column="0">
+               <widget class="QLabel" name="label">
+                <property name="text">
+                 <string>X 比例偏移:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QSlider" name="offset_centerx_slider">
+                <property name="minimum">
+                 <number>-100</number>
+                </property>
+                <property name="maximum">
+                 <number>100</number>
+                </property>
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="2">
+               <widget class="QLabel" name="offset_centerx_value_label">
+                <property name="text">
+                 <string>0.0</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_2">
+                <property name="text">
+                 <string>Y 比例偏移:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QSlider" name="offset_centery_slider">
+                <property name="minimum">
+                 <number>-100</number>
+                </property>
+                <property name="maximum">
+                 <number>100</number>
+                </property>
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="2">
+               <widget class="QLabel" name="offset_centery_value_label">
+                <property name="text">
+                 <string>0.0</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="keys_groupbox">
+             <property name="title">
+              <string>鎖定按鍵</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_keys">
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_9">
+                <property name="text">
+                 <string>主鎖定按鍵 (VK_CODE):</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QLineEdit" name="lock_key_input"/>
+              </item>
+              <item row="1" column="0" colspan="2">
+               <widget class="QCheckBox" name="side_key_lock_enabled_checkbox">
+                <property name="text">
+                 <string>啟用側鍵鎖定</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="side_lock_key_label">
+                <property name="text">
+                 <string>側鍵鎖定按鍵 (VK_CODE):</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QLineEdit" name="side_lock_key_input"/>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="speed_groupbox">
+             <property name="title">
+              <string>滑鼠移動速度</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_speed">
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_4">
+                <property name="text">
+                 <string>速度 X:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QSlider" name="aim_speed_x_slider">
+                <property name="minimum">
+                 <number>1</number>
+                </property>
+                <property name="maximum">
+                 <number>200</number>
+                </property>
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="2">
+               <widget class="QLabel" name="aim_speed_x_value_label">
+                <property name="text">
+                 <string>6.7</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_5">
+                <property name="text">
+                 <string>速度 Y:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QSlider" name="aim_speed_y_slider">
+                <property name="minimum">
+                 <number>1</number>
+                </property>
+                <property name="maximum">
+                 <number>200</number>
+                </property>
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="2">
+               <widget class="QLabel" name="aim_speed_y_value_label">
+                <property name="text">
+                 <string>8.3</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="prediction_groupbox">
+             <property name="title">
+              <string>預測瞄準</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_prediction">
+              <item row="0" column="0" colspan="3">
+               <widget class="QCheckBox" name="prediction_checkbox">
+                <property name="text">
+                 <string>啟用預測瞄準</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="prediction_time_label">
+                <property name="text">
+                 <string>預測歷史時間 (秒):</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QSlider" name="prediction_time_slider">
+                <property name="minimum">
+                 <number>1</number>
+                </property>
+                <property name="maximum">
+                 <number>20</number>
+                </property>
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="2">
+               <widget class="QLabel" name="prediction_time_value_label">
+                <property name="text">
+                 <string>1.0</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_aim">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="detection_tab">
+          <attribute name="title">
+           <string>偵測設定</string>
+          </attribute>
+          <layout class="QVBoxLayout" name="verticalLayout_detection">
+           <item>
+            <widget class="QGroupBox" name="detection_params_groupbox">
+             <property name="title">
+              <string>偵測參數</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_detection_params">
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_7">
+                <property name="text">
+                 <string>YOLO 置信度:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QSlider" name="yolo_confidence_slider">
+                <property name="minimum">
+                 <number>1</number>
+                </property>
+                <property name="maximum">
+                 <number>100</number>
+                </property>
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="2">
+               <widget class="QLabel" name="yolo_confidence_value_label">
+                <property name="text">
+                 <string>0.30</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="model_size_label">
+                <property name="text">
+                 <string>模型輸入尺寸:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1" colspan="2">
+               <widget class="QLineEdit" name="model_size_input"/>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="label_8">
+                <property name="text">
+                 <string>偵測目標類別:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1" colspan="2">
+               <widget class="QComboBox" name="detection_target_combobox">
+                <item>
+                 <property name="text">
+                  <string>ALL</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>0</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>1</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLabel" name="iou_threshold_label">
+                <property name="text">
+                 <string>IOU 閾值:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="QSlider" name="iou_threshold_slider">
+                <property name="minimum">
+                 <number>1</number>
+                </property>
+                <property name="maximum">
+                 <number>95</number>
+                </property>
+                <property name="value">
+                 <number>45</number>
+                </property>
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="2">
+               <widget class="QLabel" name="iou_threshold_value_label">
+                <property name="text">
+                 <string>0.45</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_detection">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="recoil_tab">
+          <attribute name="title">
+           <string>壓槍設定</string>
+          </attribute>
+          <layout class="QVBoxLayout" name="verticalLayout_recoil">
+           <item>
+            <widget class="QGroupBox" name="recoil_control_groupbox">
+             <property name="title">
+              <string>壓槍控制</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_recoil">
+              <item row="0" column="0" colspan="3">
+               <widget class="QCheckBox" name="recoil_control_checkbox">
+                <property name="text">
+                 <string>啟用壓槍</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="recoil_y_strength_label">
+                <property name="text">
+                 <string>壓槍幅度 (Y):</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QSlider" name="recoil_y_strength_slider">
+                <property name="minimum">
+                 <number>1</number>
+                </property>
+                <property name="maximum">
+                 <number>50</number>
+                </property>
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="2">
+               <widget class="QLabel" name="recoil_y_strength_value_label">
+                <property name="text">
+                 <string>5</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="recoil_x_strength_label">
+                <property name="text">
+                 <string>壓槍幅度 (X):</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QSlider" name="recoil_x_strength_slider">
+                <property name="minimum">
+                 <number>-50</number>
+                </property>
+                <property name="maximum">
+                 <number>50</number>
+                </property>
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="2">
+               <widget class="QLabel" name="recoil_x_strength_value_label">
+                <property name="text">
+                 <string>0</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLabel" name="recoil_delay_label">
+                <property name="text">
+                 <string>壓槍延遲 (ms):</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="QSlider" name="recoil_delay_slider">
+                <property name="minimum">
+                 <number>1</number>
+                </property>
+                <property name="maximum">
+                 <number>100</number>
+                </property>
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="2">
+               <widget class="QLabel" name="recoil_delay_value_label">
+                <property name="text">
+                 <string>10</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="0">
+               <widget class="QLabel" name="recoil_trigger_keys_label">
+                <property name="text">
+                 <string>觸發按鍵 (VK_CODE, 用+組合):</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="1" colspan="2">
+               <widget class="QLineEdit" name="recoil_trigger_keys_input"/>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_recoil">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="range_tab">
+          <attribute name="title">
+           <string>範圍設定</string>
+          </attribute>
+          <layout class="QVBoxLayout" name="verticalLayout_range">
+           <item>
+            <widget class="QGroupBox" name="range_groupbox">
+             <property name="title">
+              <string>瞄準範圍</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_range">
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_3">
+                <property name="text">
+                 <string>範圍:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QSlider" name="aim_range_slider">
+                <property name="minimum">
+                 <number>10</number>
+                </property>
+                <property name="maximum">
+                 <number>500</number>
+                </property>
+                <property name="singleStep">
+                 <number>10</number>
+                </property>
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="2">
+               <widget class="QLabel" name="aim_range_value_label">
+                <property name="text">
+                 <string>150</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="auto_scale_groupbox">
+             <property name="title">
+              <string>自動縮放瞄準範圍</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_auto_scale">
+              <item row="0" column="0" colspan="3">
+               <widget class="QCheckBox" name="auto_scale_aim_range_checkbox">
+                <property name="text">
+                 <string>啟用自動縮放</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="auto_scale_factor_label">
+                <property name="text">
+                 <string>縮小倍率:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QSlider" name="auto_scale_factor_slider">
+                <property name="maximum">
+                 <number>100</number>
+                </property>
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="2">
+               <widget class="QLabel" name="auto_scale_factor_value_label">
+                <property name="text">
+                 <string>0.0</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="overlay_display_groupbox">
+             <property name="title">
+              <string>範圍顯示設定</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_overlay_display">
+              <item row="0" column="0" colspan="3">
+               <widget class="QPushButton" name="toggle_aim_overlay_button">
+                <property name="text">
+                 <string>範圍顯示</string>
+                </property>
+                <property name="checkable">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_overlay_color">
+                <property name="text">
+                 <string>一般顏色:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QPushButton" name="choose_overlay_color_button">
+                <property name="text">
+                 <string>選擇顏色</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="2">
+               <widget class="QLabel" name="overlay_color_preview">
+                <property name="minimumSize">
+                 <size>
+                  <width>20</width>
+                  <height>20</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgba(0, 255, 255, 0.5); border: 1px solid gray;</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="label_lock_color">
+                <property name="text">
+                 <string>鎖定顏色:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QPushButton" name="choose_lock_color_button">
+                <property name="text">
+                 <string>選擇顏色</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="2">
+               <widget class="QLabel" name="lock_color_preview">
+                <property name="minimumSize">
+                 <size>
+                  <width>20</width>
+                  <height>20</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgba(255, 0, 0, 0.5); border: 1px solid gray;</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_range">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="general_tab">
+          <attribute name="title">
+           <string>通用設定</string>
+          </attribute>
+          <layout class="QVBoxLayout" name="verticalLayout_general">
+           <item>
+            <widget class="QGroupBox" name="general_switches_groupbox">
+             <property name="title">
+              <string>主要功能</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_general_switches">
+              <item>
+               <widget class="QCheckBox" name="aimbot_checkbox">
+                <property name="text">
+                 <string>啟用鎖定</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="mouse_thread_checkbox">
+                <property name="text">
+                 <string>滑鼠多執行緒</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="show_fps_overlay_checkbox">
+                <property name="text">
+                 <string>顯示 FPS</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="show_detection_boxes_checkbox">
+                <property name="text">
+                 <string>顯示偵測方塊</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="capture_fps_groupbox">
+             <property name="title">
+              <string>截圖設定</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_capture_fps">
+              <item row="0" column="0">
+               <widget class="QLabel" name="capture_fps_label">
+                <property name="text">
+                 <string>截圖速率 (FPS):</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QSlider" name="capture_fps_slider">
+                <property name="minimum">
+                 <number>30</number>
+                </property>
+                <property name="maximum">
+                 <number>240</number>
+                </property>
+                <property name="value">
+                 <number>240</number>
+                </property>
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="tickPosition">
+                 <enum>QSlider::TicksBelow</enum>
+                </property>
+                <property name="tickInterval">
+                 <number>30</number>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="2">
+               <widget class="QLabel" name="capture_fps_value_label">
+                <property name="text">
+                 <string>240</string>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>40</width>
+                  <height>0</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0" colspan="3">
+               <widget class="QLabel" name="capture_fps_info_label">
+                <property name="text">
+                 <string>建議值: 60fps (平衡), 120fps (高性能), 240fps (極致)</string>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: gray; font-size: 10px; background-color: transparent;</string>
+                </property>
+                <property name="wordWrap">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="mouse_mode_groupbox">
+             <property name="title">
+              <string>滑鼠移動模式</string>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_mouse_mode">
+              <item>
+               <widget class="QComboBox" name="mouse_move_mode_combobox">
+                <item>
+                 <property name="text">
+                  <string>按鍵魔盒-鍵鼠轉接器</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>win32</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>hid007</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>ddxoft</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_general">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="buttons_layout">
+         <item>
+          <widget class="QPushButton" name="toggle_preview_button">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>YOLO 預覽</string>
+           </property>
+          </widget>
+         </item>
+         <!-- item for always_on_top_button removed -->
+        </layout>
+       </item>
+       <item>
+        <widget class="QPushButton" name="toggle_yolo_button">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>啟動 YOLO</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>470</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
