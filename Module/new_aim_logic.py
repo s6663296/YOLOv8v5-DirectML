@@ -144,7 +144,7 @@ class NewAimLogic:
         pixel_offset_y = offset_centery_ratio * (box_height / 2)
 
         adjusted_target_x = target_x + pixel_offset_x
-        adjusted_target_y = target_y + pixel_offset_y
+        adjusted_target_y = target_y - pixel_offset_y
         
         offset_x = adjusted_target_x - self.center_x
         offset_y = adjusted_target_y - self.center_y

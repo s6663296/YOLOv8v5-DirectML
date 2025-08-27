@@ -105,7 +105,7 @@ class SettingsManager:
         win.aimbot_checkbox.setChecked(win.aimbot_enabled)
         win.offset_centerx_slider.setValue(int(win.offset_centerx * 100))
         win.offset_centerx_value_label.setText(f"{win.offset_centerx:.2f}")
-        centery_slider_value = max(-100, min(100, int(win.offset_centery * 100)))
+        centery_slider_value = max(-100, min(100, int(-win.offset_centery * 100)))
         win.offset_centery_slider.setValue(centery_slider_value)
         win.offset_centery_value_label.setText(f"{win.offset_centery:.2f}")
         win.aim_range_slider.setValue(win.aim_range)

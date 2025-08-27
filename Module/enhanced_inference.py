@@ -47,8 +47,7 @@ class EnhancedInferenceManager:
         
         # 處理打包後的資源路徑
         if not os.path.isabs(model_path):
-            # 如果是相對路徑，使用resource_path函數來處理打包後的路徑
-            from Sudaneseboy import resource_path
+            from Module.utils import resource_path
             model_path = resource_path(model_path)
 
         try:

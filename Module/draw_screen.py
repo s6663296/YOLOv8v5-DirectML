@@ -60,6 +60,7 @@ class DrawScreen(QWidget):
             x2 += padding
             y2 += padding
 
+            # QRect 需要整數座標，將 numpy.float64 轉換為 int
             rect = QRect(int(x1), int(y1), int(x2 - x1), int(y2 - y1))
             
             # 改為繪製邊角

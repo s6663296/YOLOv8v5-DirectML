@@ -114,7 +114,7 @@ class UIHandler:
 
     def on_offset_centery_slider_value_changed(self, value):
         win = self.main_window
-        win.offset_centery = value / 100.0
+        win.offset_centery = -value / 100.0
         win.offset_centery_value_label.setText(f"{win.offset_centery:.2f}")
         Config.content["offset_centery"] = win.offset_centery
         if hasattr(win, 'new_aim_logic') and win.new_aim_logic:
@@ -378,18 +378,6 @@ class UIHandler:
                     new_settings['capture_fps'] = Config.default.get('capture_fps', 240)
                     logger.info("導入的配置缺少 capture_fps 設定，已使用預設值")
                 
-                # 確保內建模型相關設定項存在
-                if 'model_type' not in new_settings:
-                    new_settings['model_type'] = Config.default.get('model_type', 'custom')
-                    logger.info("導入的配置缺少 model_type 設定，已使用預設值")
-                
-                if 'selected_builtin_model' not in new_settings:
-                    new_settings['selected_builtin_model'] = Config.default.get('selected_builtin_model', '')
-                    logger.info("導入的配置缺少 selected_builtin_model 設定，已使用預設值")
-                
-                if 'custom_model_file' not in new_settings:
-                    new_settings['custom_model_file'] = Config.default.get('custom_model_file', 'yolov8n.pt')
-                    logger.info("導入的配置缺少 custom_model_file 設定，已使用預設值")
                 
                 if 'yolo_version' not in new_settings:
                     new_settings['yolo_version'] = Config.default.get('yolo_version', 'auto')
@@ -402,13 +390,6 @@ class UIHandler:
                 
                 Config.save_to_current_config()
                 
-                # 重新載入內建模型列表（以防模型檔案變更）
-                win.builtin_models = win.load_builtin_models()
-                
-                # 先更新設定中的模型類型和相關設定
-                imported_model_type = new_settings.get('model_type', 'custom')
-                win.model_type = imported_model_type
-                win.selected_builtin_model = new_settings.get('selected_builtin_model', '')
                 
                 # 使用 settings_manager 載入設定並套用至 UI
                 win.settings_manager.load_settings_to_ui()
@@ -421,25 +402,13 @@ class UIHandler:
                 
                 win.current_config_path = filePath
                 
-                # 根據匯入的模型類型顯示對應資訊
-                model_type = new_settings.get('model_type', 'custom')
                 yolo_version = new_settings.get('yolo_version', 'auto')
-                
-                # 轉換 YOLO 版本顯示格式
                 version_display = {"none": "未選擇", "v5": "YOLOv5", "v8": "YOLOv8", "auto": "自動"}.get(yolo_version, yolo_version)
-                
-                if model_type == 'builtin':
-                    selected_model = new_settings.get('selected_builtin_model', '')
-                    if selected_model and selected_model in win.builtin_models:
-                        win.statusBar().showMessage(f"設定已導入，使用內建模型: {selected_model} ({version_display})", 5000)
-                    else:
-                        win.statusBar().showMessage(f"設定已導入，但內建模型 '{selected_model}' 不存在 ({version_display})", 5000)
-                else:
-                    model_file = new_settings.get('model_file', '')
-                    win.statusBar().showMessage(f"設定已導入，使用自訂模型: {os.path.basename(model_file)} ({version_display})", 5000)
+                model_file = new_settings.get('model_file', '')
+                win.statusBar().showMessage(f"設定已導入，使用自訂模型: {os.path.basename(model_file)} ({version_display})", 5000)
                 
                 logger.info(f"設定已從 {filePath} 導入，當前配置文件: {Config.current_config_file}")
-                logger.info(f"模型類型: {model_type}, YOLO版本: {yolo_version}, 模型: {new_settings.get('selected_builtin_model' if model_type == 'builtin' else 'model_file', 'N/A')}")
+                logger.info(f"YOLO版本: {yolo_version}, 模型: {model_file}")
 
             except json.JSONDecodeError:
                 QMessageBox.critical(win, "導入失敗", "檔案格式錯誤，無法解析 JSON。")
@@ -537,6 +506,13 @@ class UIHandler:
         if hasattr(win, 'capture_manager') and win.capture_manager:
             win.capture_manager.target_fps = win.capture_fps
             logger.info(f"截圖速率已更新為: {win.capture_fps} FPS")
+            
+            # 如果YOLO正在運行，則動態更新計時器間隔
+            if win.yolo_enabled:
+                update_interval = max(1, 1000 // win.capture_fps)
+                win.video_timer.setInterval(update_interval)
+                win.drawing_timer.setInterval(update_interval)
+                logger.info(f"預覽與繪圖更新率已同步至: {win.capture_fps} FPS (間隔: {update_interval}ms)")
             
         if win.capture_fps >= 200:
             performance_tip = "極致性能 - 高CPU使用率"

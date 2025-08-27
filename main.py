@@ -38,7 +38,7 @@ from Module.optimized_nms import optimized_nms_boxes, get_optimized_nms
 from Module.new_aim_logic import NewAimLogic
 from Module.ui_handler import UIHandler
 from Module.preview_window import PreviewWindow
-from Module.utils import resource_path
+from Module.utils import resource_path, get_screen_scaling_factor
 
 class main(QMainWindow):
     aim_range_changed = pyqtSignal(int)
@@ -148,32 +148,9 @@ class main(QMainWindow):
         self.tray_manager = TrayManager(self)
         
         self.drag_position = None
+        self.screen_scaling_factor = get_screen_scaling_factor()
+        logger.info(f"偵測到螢幕縮放比例: {self.screen_scaling_factor}")
  
-    def load_builtin_models(self):
-        """動態載入 Encrypted_Model 資料夾中的加密模型"""
-        builtin_models = {}
-        encrypted_model_dir = resource_path("Encrypted_Model")
-        
-        try:
-            if os.path.exists(encrypted_model_dir):
-                for filename in os.listdir(encrypted_model_dir):
-                    if filename.lower().endswith('.eonnx'):
-                        # 使用檔案名稱（不含副檔名）作為顯示名稱
-                        model_name = os.path.splitext(filename)[0]
-                        model_path = f"Encrypted_Model/{filename}"
-                        builtin_models[model_name] = model_path
-                        logger.info(f"發現內建模型: {model_name} -> {model_path}")
-            else:
-                logger.warning(f"內建模型資料夾不存在: {encrypted_model_dir}")
-        except Exception as e:
-            logger.error(f"載入內建模型時發生錯誤: {e}")
-        
-        if not builtin_models:
-            logger.warning("未找到任何內建模型")
-        else:
-            logger.info(f"成功載入 {len(builtin_models)} 個內建模型")
-        
-        return builtin_models
 
     def mousePressEvent(self, event):
         if event.button() == Qt.MouseButton.LeftButton:
@@ -322,10 +299,11 @@ class main(QMainWindow):
 
                 if self.show_detection_boxes and self.tracked_detections is not None and len(self.tracked_detections) > 0:
                     box = self.tracked_detections.xyxy[0]
-                    screen_x1 = self.capture_area['left'] + box[0]
-                    screen_y1 = self.capture_area['top'] + box[1]
-                    screen_x2 = self.capture_area['left'] + box[2]
-                    screen_y2 = self.capture_area['top'] + box[3]
+                    # 根據螢幕縮放比例調整座標
+                    screen_x1 = (self.capture_area['left'] + box[0]) / self.screen_scaling_factor
+                    screen_y1 = (self.capture_area['top'] + box[1]) / self.screen_scaling_factor
+                    screen_x2 = (self.capture_area['left'] + box[2]) / self.screen_scaling_factor
+                    screen_y2 = (self.capture_area['top'] + box[3]) / self.screen_scaling_factor
                     boxes_to_draw = [(screen_x1, screen_y1, screen_x2, screen_y2)]
                     self.boxes_to_draw_queue.put(boxes_to_draw)
                 elif self.show_detection_boxes:
@@ -467,8 +445,10 @@ class main(QMainWindow):
 
             self.yolo_enabled = True
             
-            self.video_timer.start(1000 // 60)
-            self.drawing_timer.start(1000 // 60)
+            # 動態設定計時器更新率以匹配截圖速率
+            update_interval = max(1, 1000 // self.capture_fps)
+            self.video_timer.start(update_interval)
+            self.drawing_timer.start(update_interval)
             self.toggle_yolo_button.setText("停止 YOLO")
             logger.info("YOLO pipeline started.")
             self.statusBar().showMessage("YOLO 已啟動", 3000)
