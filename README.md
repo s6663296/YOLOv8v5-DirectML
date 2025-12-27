@@ -43,13 +43,21 @@
 *   **Python**: 3.10.8
 
 ## 安裝與執行
+1.  **創建虛擬環境**:
+    ```bash
+    python -m venv venv
+    ```
+2.  **啟動虛擬環境**:
+    ```bash
+    venv\Scripts\activate
+    ```
 
-1.  **安裝相依套件**:
+3.  **安裝相依套件**:
     ```bash
     pip install -r requirements.txt
     ```
 
-2.  **執行程式**:
+4.  **執行程式**:
     ```bash
     python main.py
     ```
