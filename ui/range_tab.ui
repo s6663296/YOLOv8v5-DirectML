@@ -1,0 +1,240 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui version="4.0">
+ <class>range_tab</class>
+ <widget class="QWidget" name="range_tab">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>280</width>
+    <height>400</height>
+   </rect>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_range_tab">
+   <property name="leftMargin">
+    <number>10</number>
+   </property>
+   <property name="topMargin">
+    <number>10</number>
+   </property>
+   <property name="rightMargin">
+    <number>10</number>
+   </property>
+   <property name="bottomMargin">
+    <number>10</number>
+   </property>
+   <property name="spacing">
+    <number>15</number>
+   </property>
+   <item>
+    <widget class="QGroupBox" name="range_groupbox">
+     <property name="title">
+      <string>瞄準範圍</string>
+     </property>
+      <layout class="QGridLayout" name="gridLayout_range">
+       <item row="0" column="0">
+        <widget class="QLabel" name="aim_width_label">
+         <property name="text">
+          <string>寬度:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QSlider" name="aim_width_slider">
+         <property name="minimum">
+          <number>10</number>
+         </property>
+         <property name="maximum">
+          <number>500</number>
+         </property>
+         <property name="value">
+          <number>300</number>
+         </property>
+         <property name="singleStep">
+          <number>10</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QLabel" name="aim_width_value_label">
+         <property name="text">
+          <string>300</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="aim_height_label">
+         <property name="text">
+          <string>高度:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QSlider" name="aim_height_slider">
+         <property name="minimum">
+          <number>10</number>
+         </property>
+         <property name="maximum">
+          <number>500</number>
+         </property>
+         <property name="value">
+          <number>300</number>
+         </property>
+         <property name="singleStep">
+          <number>10</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QLabel" name="aim_height_value_label">
+         <property name="text">
+          <string>300</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="auto_scale_groupbox">
+     <property name="title">
+      <string>自動縮放瞄準範圍</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_auto_scale">
+      <item row="0" column="0" colspan="3">
+       <widget class="QCheckBox" name="auto_scale_aim_range_checkbox">
+        <property name="text">
+         <string>啟用自動縮放</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="auto_scale_factor_label">
+        <property name="text">
+         <string>縮小倍率:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QSlider" name="auto_scale_factor_slider">
+        <property name="maximum">
+         <number>100</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QLabel" name="auto_scale_factor_value_label">
+        <property name="text">
+         <string>0.0</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="overlay_display_groupbox">
+     <property name="title">
+      <string>範圍顯示設定</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_overlay_display">
+      <item row="0" column="0" colspan="3">
+       <widget class="QPushButton" name="toggle_aim_overlay_button">
+        <property name="text">
+         <string>範圍顯示</string>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_overlay_color">
+        <property name="text">
+         <string>一般顏色:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QPushButton" name="choose_overlay_color_button">
+        <property name="text">
+         <string>選擇顏色</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QLabel" name="overlay_color_preview">
+        <property name="minimumSize">
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgba(0, 255, 255, 0.5); border: 1px solid gray;</string>
+        </property>
+        <property name="text">
+         <string />
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_lock_color">
+        <property name="text">
+         <string>鎖定顏色:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QPushButton" name="choose_lock_color_button">
+        <property name="text">
+         <string>選擇顏色</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2">
+       <widget class="QLabel" name="lock_color_preview">
+        <property name="minimumSize">
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgba(255, 0, 0, 0.5); border: 1px solid gray;</string>
+        </property>
+        <property name="text">
+         <string />
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <spacer name="verticalSpacer_range_tab">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+  </layout>
+ </widget>
+ <resources />
+ <connections />
+</ui>

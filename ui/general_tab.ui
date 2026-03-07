@@ -1,0 +1,387 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui version="4.0">
+ <class>general_tab</class>
+ <widget class="QWidget" name="general_tab">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>280</width>
+    <height>450</height>
+   </rect>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_general_tab">
+   <property name="leftMargin">
+    <number>10</number>
+   </property>
+   <property name="topMargin">
+    <number>10</number>
+   </property>
+   <property name="rightMargin">
+    <number>10</number>
+   </property>
+   <property name="bottomMargin">
+    <number>10</number>
+   </property>
+   <property name="spacing">
+    <number>15</number>
+   </property>
+   <item>
+    <widget class="QGroupBox" name="general_switches_groupbox">
+     <property name="title">
+      <string>主要功能</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_general_switches">
+      <item>
+       <widget class="QCheckBox" name="mouse_thread_checkbox">
+        <property name="text">
+         <string>滑鼠多執行緒</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="show_fps_overlay_checkbox">
+        <property name="text">
+         <string>顯示 FPS</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="show_latency_overlay_checkbox">
+        <property name="text">
+         <string>顯示延遲</string>
+        </property>
+        <property name="toolTip">
+         <string>顯示從截圖開始到追蹤完畢的完整處理延遲</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="show_detection_boxes_checkbox">
+        <property name="text">
+         <string>顯示偵測方塊</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="capture_fps_groupbox">
+     <property name="title">
+      <string>截圖設定</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_capture_fps">
+      <item row="0" column="0">
+       <widget class="QLabel" name="capture_fps_label">
+        <property name="text">
+         <string>截圖速率 (FPS):</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QSlider" name="capture_fps_slider">
+        <property name="minimum">
+         <number>30</number>
+        </property>
+        <property name="maximum">
+         <number>240</number>
+        </property>
+        <property name="value">
+         <number>240</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="tickPosition">
+         <enum>QSlider::TicksBelow</enum>
+        </property>
+        <property name="tickInterval">
+         <number>30</number>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLabel" name="capture_fps_value_label">
+        <property name="text">
+         <string>240</string>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>40</width>
+          <height>0</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" colspan="3">
+       <widget class="QLabel" name="capture_fps_info_label">
+        <property name="text">
+         <string>建議值: 60fps (平衡), 120fps (高性能), 240fps (極致)</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: gray; font-size: 10px; background-color: transparent;</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="capture_source_label">
+        <property name="text">
+         <string>截圖來源:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1" colspan="2">
+       <widget class="QComboBox" name="capture_source_combobox">
+        <item>
+         <property name="text">
+          <string>MSS (螢幕截圖)</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>DXGI (高效截圖)</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>OBS UDP 接收</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="capture_monitor_label">
+        <property name="text">
+         <string>截圖顯示器:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1" colspan="2">
+       <widget class="QComboBox" name="capture_monitor_combobox">
+        <property name="toolTip">
+         <string>選擇要擷取畫面的顯示器（多螢幕環境建議設定）</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="obs_ip_label">
+        <property name="text">
+         <string>監聽 IP:</string>
+        </property>
+        <property name="toolTip">
+         <string>本機監聯的網路介面 IP（留空則監聽所有介面）</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1" colspan="2">
+       <widget class="QLineEdit" name="obs_ip_input">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="readOnly">
+         <bool>false</bool>
+        </property>
+        <property name="placeholderText">
+         <string>留空監聽所有介面，或輸入本機 IP</string>
+        </property>
+        <property name="toolTip">
+         <string>本機監聽的網路介面 IP（留空則監聽所有介面）</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="obs_port_label">
+        <property name="text">
+         <string>監聽 Port:</string>
+        </property>
+        <property name="toolTip">
+         <string>本機監聽的 UDP 端口，OBS 發送端需設定輸出到此端口</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1" colspan="2">
+       <widget class="QSpinBox" name="obs_port_spinbox">
+        <property name="minimum">
+         <number>1</number>
+        </property>
+        <property name="maximum">
+         <number>65535</number>
+        </property>
+        <property name="value">
+         <number>1234</number>
+        </property>
+        <property name="toolTip">
+         <string>本機監聽的 UDP 端口（OBS 發送端需設定輸出到此端口）</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0" colspan="3">
+       <widget class="QLabel" name="obs_info_label">
+        <property name="text">
+         <string>OBS 發送端設定：輸出到「本機IP:端口」（例如: udp://192.168.1.100:1234）</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: gray; font-size: 10px; background-color: transparent;</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+
+   <item>
+    <widget class="QGroupBox" name="inference_backend_groupbox">
+     <property name="title">
+      <string>推理後端</string>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_inference_backend">
+      <item>
+       <widget class="QLabel" name="inference_backend_label">
+        <property name="text">
+         <string>選擇後端:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="inference_backend_combobox">
+         <property name="toolTip">
+          <string>TensorRT 需先安裝套件並使用 .engine 模型，請參考 TensorRT_安裝指南.md</string>
+         </property>
+         <item>
+          <property name="text">
+           <string>DirectML (AMD/Intel/NVIDIA)</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>CUDA (NVIDIA)</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>TensorRT (NVIDIA 高效能)</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>CPU (通用)</string>
+          </property>
+         </item>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="mouse_mode_groupbox">
+     <property name="title">
+      <string>滑鼠移動模式</string>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_mouse_mode">
+      <item>
+       <widget class="QComboBox" name="mouse_move_mode_combobox">
+        <item>
+         <property name="text">
+          <string>按鍵魔盒-鍵鼠轉接器</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>win32</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>hid007</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>按鍵魔盒-Lite</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Makcu</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="init_mouse_mode_button">
+        <property name="text">
+         <string>初始化</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="process_priority_groupbox">
+     <property name="title">
+      <string>程式優先權</string>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_process_priority">
+      <item>
+       <widget class="QComboBox" name="process_priority_combobox">
+        <item>
+         <property name="text">
+          <string>即時</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>高</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>高於標準</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>標準</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>低於標準</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>低</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <spacer name="verticalSpacer_general_tab">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+  </layout>
+ </widget>
+ <resources />
+ <connections />
+</ui>

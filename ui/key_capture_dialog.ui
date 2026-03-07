@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui version="4.0">
+ <class>KeyCaptureDialog</class>
+ <widget class="QDialog" name="KeyCaptureDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>320</width>
+    <height>140</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>按鍵偵測</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="hint_label">
+     <property name="styleSheet">
+      <string notr="true">font-size: 14px; padding: 10px;</string>
+     </property>
+     <property name="text">
+      <string>請按下任意按鍵...
+按 ESC 取消</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="key_display_label">
+     <property name="styleSheet">
+      <string notr="true">font-size: 16px; font-weight: bold; color: #00aaff; padding: 5px;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

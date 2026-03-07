@@ -1,0 +1,544 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui version="4.0">
+ <class>main</class>
+ <widget class="QMainWindow" name="main">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>300</width>
+    <height>700</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>AI AIMBOT</string>
+  </property>
+  <property name="styleSheet">
+   <string>
+
+
+/* Premium Dark Theme */
+#main {
+  background-color: transparent;
+}
+QWidget#control_panel {
+  background-color: #121212;
+  border-radius: 16px;
+  border: 1px solid #2a2a2a;
+}
+QLabel {
+  font-size: 13px;
+  font-family: 'Segoe UI', 'Roboto', sans-serif;
+  background-color: transparent;
+  color: #e0e0e0;
+}
+QLabel#video_label {
+  background-color: #000000;
+  border-radius: 8px;
+  border: 1px solid #333;
+}
+QLineEdit, QTextEdit {
+  background-color: #1e1e1e;
+  border-radius: 6px;
+  padding: 6px 10px;
+  border: 1px solid #333;
+  font-size: 12px;
+  font-family: 'Segoe UI', sans-serif;
+  color: #f0f0f0;
+  selection-background-color: #0097a7;
+}
+QLineEdit:focus, QTextEdit:focus {
+  border: 1px solid #00bcd4;
+  background-color: #252525;
+}
+QLineEdit[readOnly="true"] {
+  background-color: #181818;
+  color: #777;
+  border: 1px solid #2a2a2a;
+}
+QPushButton {
+  background-color: #252525;
+  color: #e0e0e0;
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: 'Segoe UI', sans-serif;
+  border: 1px solid #3a3a3a;
+}
+QPushButton:hover {
+  background-color: #303030;
+  border-color: #555;
+}
+QPushButton:pressed {
+  background-color: #1a1a1a;
+  border-color: #00aaff;
+}
+QPushButton:checked {
+  background-color: #0097a7;
+  color: white;
+  border: 1px solid #0097a7;
+}
+
+
+QPushButton#minimize_button, QPushButton#close_button, QPushButton#mode_switch_button {
+  background-color: transparent;
+  border: none;
+  border-radius: 4px;
+  color: #e0e0e0;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 0; /* Reset padding for small buttons */
+}
+QPushButton#minimize_button:hover, QPushButton#mode_switch_button:hover {
+  background-color: #333;
+  color: white;
+}
+QPushButton#close_button:hover {
+  background-color: #d32f2f; /* Red hover for close */
+  color: white;
+}
+QCheckBox {
+  font-size: 12px;
+  spacing: 8px;
+  background-color: transparent;
+  color: #d0d0d0;
+}
+QCheckBox::indicator {
+  width: 18px;
+  height: 18px;
+  border: 1px solid #444;
+  border-radius: 4px;
+  background-color: #1e1e1e;
+}
+QCheckBox::indicator:checked {
+  background-color: #00bcd4;
+  border-color: #00bcd4;
+  image: url(:/icons/check.png); /* Assuming standard check, or just color */
+}
+QCheckBox::indicator:hover {
+  border-color: #666;
+}
+QComboBox {
+  background-color: #1e1e1e;
+  border: 1px solid #333;
+  border-radius: 6px;
+  padding: 5px 10px;
+  color: #e0e0e0;
+}
+QComboBox:on {
+  border: 1px solid #00bcd4;
+}
+QComboBox::drop-down {
+  border: none;
+  width: 24px;
+}
+QComboBox QAbstractItemView {
+  background-color: #1e1e1e;
+  selection-background-color: #0097a7;
+  border: 1px solid #333;
+  outline: none;
+  color: #e0e0e0;
+}
+QSlider::groove:horizontal {
+  border: none;
+  height: 3px;
+  background: #2a2a2a;
+  border-radius: 1px;
+}
+QSlider::sub-page:horizontal {
+  background: #00bcd4;
+  border-radius: 1px;
+}
+QSlider::handle:horizontal {
+  background: #26d7eb;
+  width: 12px;
+  height: 12px;
+  margin: -5px 0;
+  border-radius: 6px;
+  border: 1px solid #121212; /* Ring effect */
+}
+QSlider::handle:horizontal:hover {
+  background: #7eeef8;
+}
+
+QGroupBox {
+  font-weight: 600;
+  border: 1px solid #333;
+  border-radius: 8px;
+  margin-top: 12px;
+  padding-top: 28px; /* Space for title inside */
+  background-color: rgba(255, 255, 255, 0.02); /* Subtle card background */
+  color: #e0e0e0;
+}
+QGroupBox::title {
+  subcontrol-origin: padding;
+  subcontrol-position: top left;
+  padding: 8px 12px;
+  background-color: transparent;
+  color: #00bcd4;
+}
+
+/* Exquisite Tab Styles */
+QTabWidget::pane {
+  border: 1px solid #333;
+  border-radius: 8px;
+  background-color: #181818;
+  top: -1px; /* Seamless connection */
+}
+
+QScrollArea#tab_scroll_area,
+QScrollArea#tab_scroll_area > QWidget {
+  background-color: #181818;
+}
+
+QWidget#aim_tab,
+QWidget#detection_tab,
+QWidget#recoil_tab,
+QWidget#range_tab,
+QWidget#general_tab {
+  background-color: #181818;
+}
+
+QTabBar::tab {
+  background: #121212;
+  color: #888;
+  padding: 8px 10px; /* Reduced padding to fit all tabs */
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  border: 1px solid transparent;
+  margin-right: 2px; /* Reduced margin */
+  font-weight: 600;
+  font-size: 12px; /* Slightly smaller font */
+  min-width: 40px; /* Reduced min-width */
+}
+QTabBar::tab:hover {
+  background: #1e1e1e;
+  color: #ccc;
+}
+QTabBar::tab:selected {
+  background: #181818; /* Matches pane background */
+  color: #00bcd4;
+  border: 1px solid #333;
+  border-bottom: 1px solid #181818; /* Hide bottom border to merge with pane */
+}
+
+QTabBar::tab:first {
+  margin-left: 0; /* Fix gap for the first tab */
+}
+QTabBar::tab:only-one {
+  margin: 0;
+}
+QMenuBar {
+  background-color: #141414;
+  color: #e0e0e0;
+  border-bottom: 1px solid #2a2a2a;
+}
+QMenuBar::item {
+  background-color: transparent;
+  padding: 6px 12px;
+}
+QMenuBar::item:selected {
+  background-color: #252525;
+}
+QMenu {
+  background-color: #1e1e1e;
+  border: 1px solid #333;
+  color: #e0e0e0;
+  padding: 4px;
+}
+QMenu::item {
+  padding: 6px 24px;
+  border-radius: 4px;
+}
+QMenu::item:selected {
+  background-color: #0097a7;
+  color: white;
+}
+QMessageBox {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+}
+QMessageBox QLabel {
+  color: #e0e0e0;
+  font-size: 14px;
+}
+/* Scrollbar Dark Theme */
+QScrollBar:vertical {
+  background: #1a1a1a;
+  width: 8px;
+  border-radius: 4px;
+  margin: 0;
+}
+QScrollBar::handle:vertical {
+  background: #444;
+  min-height: 30px;
+  border-radius: 4px;
+}
+QScrollBar::handle:vertical:hover {
+  background: #555;
+}
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+  height: 0;
+}
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+  background: none;
+}
+QScrollBar:horizontal {
+  background: #1a1a1a;
+  height: 8px;
+  border-radius: 4px;
+  margin: 0;
+}
+QScrollBar::handle:horizontal {
+  background: #444;
+  min-width: 30px;
+  border-radius: 4px;
+}
+QScrollBar::handle:horizontal:hover {
+  background: #555;
+}
+QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal {
+  width: 0;
+}
+QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal {
+  background: none;
+}
+   </string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout_11">
+    <item>
+     <widget class="QWidget" name="control_panel">
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <property name="leftMargin">
+        <number>10</number>
+       </property>
+       <property name="topMargin">
+        <number>10</number>
+       </property>
+       <property name="rightMargin">
+        <number>10</number>
+       </property>
+       <property name="bottomMargin">
+        <number>10</number>
+       </property>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QLabel" name="title_label">
+            <property name="text">
+              <string>AI AIMBOT</string>
+            </property>
+           <property name="styleSheet">
+            <string notr="true">
+font-size: 20px;
+font-weight: bold;
+font-family: 'Verdana', 'Geneva', sans-serif;
+</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="mode_switch_button">
+           <property name="text">
+            <string>單機</string>
+           </property>
+           <property name="checkable">
+            <bool>true</bool>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="minimize_button">
+           <property name="text">
+            <string>-</string>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>30</width>
+             <height>30</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="close_button">
+           <property name="text">
+            <string>X</string>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>30</width>
+             <height>30</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="model_selection_layout">
+         <item>
+          <widget class="QLabel" name="model_label">
+           <property name="text">
+            <string>自訂模型:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="model_path_display">
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="choose_model_button">
+           <property name="text">
+            <string>選擇模型</string>
+           </property>
+          </widget>
+         </item>
+          <item>
+           <widget class="QComboBox" name="yolo_version_combobox">
+            <item>
+             <property name="text">
+              <string>請選擇YOLO版本</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>YOLOv5</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>YOLOv8</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>YOLOv11</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>YOLOv12</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="config_display_layout">
+         <item>
+          <widget class="QLabel" name="config_file_label">
+           <property name="text">
+            <string>當前設定:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="config_file_display">
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="save_config_button">
+           <property name="text">
+            <string>保存設定</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="import_button">
+           <property name="text">
+            <string>導入設定</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="export_button">
+           <property name="text">
+            <string>導出設定</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QTabWidget" name="tabWidget">
+         <property name="currentIndex">
+          <number>0</number>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="buttons_layout">
+         <item>
+          <widget class="QPushButton" name="toggle_preview_button">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>YOLO 預覽</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QPushButton" name="toggle_yolo_button">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>啟動 YOLO</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>470</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+ </widget>
+ <resources />
+ <connections />
+</ui>

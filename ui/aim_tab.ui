@@ -1,0 +1,466 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui version="4.0">
+ <class>aim_tab</class>
+ <widget class="QWidget" name="aim_tab">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>280</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_aim_tab">
+   <property name="leftMargin">
+    <number>10</number>
+   </property>
+   <property name="topMargin">
+    <number>10</number>
+   </property>
+   <property name="rightMargin">
+    <number>10</number>
+   </property>
+   <property name="bottomMargin">
+    <number>10</number>
+   </property>
+   <property name="spacing">
+    <number>15</number>
+   </property>
+   <item>
+    <widget class="QGroupBox" name="offset_groupbox">
+     <property name="title">
+      <string>瞄準點偏移</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_offset">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_offset_mode">
+        <property name="text">
+         <string>偏移模式:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1" colspan="2">
+       <widget class="QComboBox" name="offset_mode_combobox">
+        <item>
+         <property name="text">
+          <string>比例偏移</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>像素偏移</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>X 像素偏移:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QSlider" name="offset_centerx_slider">
+        <property name="minimum">
+         <number>-100</number>
+        </property>
+        <property name="maximum">
+         <number>100</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QLabel" name="offset_centerx_value_label">
+        <property name="text">
+         <string>0.0</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>Y 像素偏移:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QSlider" name="offset_centery_slider">
+        <property name="minimum">
+         <number>-100</number>
+        </property>
+        <property name="maximum">
+         <number>100</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2">
+       <widget class="QLabel" name="offset_centery_value_label">
+        <property name="text">
+         <string>0.0</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="keys_groupbox">
+     <property name="title">
+      <string>鎖定按鍵</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_keys">
+      <item row="0" column="0" colspan="3">
+       <widget class="QCheckBox" name="aimbot_checkbox">
+        <property name="text">
+         <string>啟用鎖定</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" colspan="3">
+       <widget class="QCheckBox" name="aimbot_hotkey_enabled_checkbox">
+        <property name="text">
+         <string>啟用自瞄快捷鍵</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="aimbot_hotkey_label">
+        <property name="text">
+         <string>自瞄開關快捷鍵(VK_CODE):</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLineEdit" name="aimbot_hotkey_input" />
+      </item>
+      <item row="2" column="2">
+       <widget class="QPushButton" name="aimbot_hotkey_detect_button">
+        <property name="text">
+         <string>偵測</string>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>60</width>
+          <height>16777215</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="label_9">
+        <property name="text">
+         <string>主鎖定按鍵 (VK_CODE):</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QLineEdit" name="lock_key_input" />
+      </item>
+      <item row="3" column="2">
+       <widget class="QPushButton" name="lock_key_detect_button">
+        <property name="text">
+         <string>偵測</string>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>60</width>
+          <height>16777215</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0" colspan="3">
+       <widget class="QCheckBox" name="side_key_lock_enabled_checkbox">
+        <property name="text">
+         <string>啟用側鍵鎖定</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="side_lock_key_label">
+        <property name="text">
+         <string>側鍵鎖定按鍵 (VK_CODE):</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QLineEdit" name="side_lock_key_input" />
+      </item>
+      <item row="5" column="2">
+       <widget class="QPushButton" name="side_lock_key_detect_button">
+        <property name="text">
+         <string>偵測</string>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>60</width>
+          <height>16777215</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0" colspan="3">
+       <widget class="QCheckBox" name="exclude_side_key_offset_checkbox">
+        <property name="text">
+         <string>側鍵鎖定無偏移</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="speed_groupbox">
+     <property name="title">
+      <string>滑鼠移動速度</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_speed">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_4">
+        <property name="text">
+         <string>速度 X:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QSlider" name="aim_speed_x_slider">
+        <property name="minimum">
+         <number>1</number>
+        </property>
+        <property name="maximum">
+         <number>200</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLabel" name="aim_speed_x_value_label">
+        <property name="text">
+         <string>6.7</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_5">
+        <property name="text">
+         <string>速度 Y:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QSlider" name="aim_speed_y_slider">
+        <property name="minimum">
+         <number>1</number>
+        </property>
+        <property name="maximum">
+         <number>200</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QLabel" name="aim_speed_y_value_label">
+        <property name="text">
+         <string>8.3</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="prediction_groupbox">
+     <property name="title">
+      <string>預測瞄準</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_prediction">
+      <item row="0" column="0" colspan="3">
+       <widget class="QCheckBox" name="prediction_checkbox">
+        <property name="text">
+         <string>啟用預測瞄準</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="prediction_time_label">
+        <property name="text">
+         <string>預測歷史時間 (秒):</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QSlider" name="prediction_time_slider">
+        <property name="minimum">
+         <number>1</number>
+        </property>
+        <property name="maximum">
+         <number>20</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QLabel" name="prediction_time_value_label">
+        <property name="text">
+         <string>1.0</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="pid_groupbox">
+      <property name="title">
+       <string>PID 控制器</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_pid">
+       <item row="0" column="0" colspan="3">
+        <widget class="QCheckBox" name="pid_checkbox">
+         <property name="text">
+          <string>啟用 PID 軌跡模擬</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="pid_kp_label">
+         <property name="text">
+          <string>Kp 比例增益:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QSlider" name="pid_kp_slider">
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>100</number>
+         </property>
+         <property name="value">
+          <number>50</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QLabel" name="pid_kp_value_label">
+         <property name="text">
+          <string>0.50</string>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>30</width>
+           <height>0</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="pid_ki_label">
+         <property name="text">
+          <string>Ki 積分增益:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QSlider" name="pid_ki_slider">
+         <property name="minimum">
+          <number>0</number>
+         </property>
+         <property name="maximum">
+          <number>50</number>
+         </property>
+         <property name="value">
+          <number>0</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QLabel" name="pid_ki_value_label">
+         <property name="text">
+          <string>0.000</string>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>30</width>
+           <height>0</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="pid_kd_label">
+         <property name="text">
+          <string>Kd 微分增益:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QSlider" name="pid_kd_slider">
+         <property name="minimum">
+          <number>0</number>
+         </property>
+         <property name="maximum">
+          <number>100</number>
+         </property>
+         <property name="value">
+          <number>10</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="2">
+        <widget class="QLabel" name="pid_kd_value_label">
+         <property name="text">
+          <string>0.010</string>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>30</width>
+           <height>0</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+   </item>
+   <item>
+    <spacer name="verticalSpacer_aim_tab">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+  </layout>
+ </widget>
+ <resources />
+ <connections />
+</ui>
