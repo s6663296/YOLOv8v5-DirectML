@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg
+  width="512"
+  height="512"
+  viewBox="0 0 512 512"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  role="img"
+  aria-labelledby="title desc"
+>
+  <title id="title">AI AIMBOT app logo</title>
+  <desc id="desc">A minimal app logo with a geometric letter A inside a target reticle.</desc>
+  <defs>
+    <linearGradient id="bg" x1="64" y1="48" x2="448" y2="464" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0D1117"/>
+      <stop offset="1" stop-color="#171C23"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(256 236) rotate(90) scale(210)">
+      <stop stop-color="#29F1C8" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#29F1C8" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="accent" x1="160" y1="128" x2="356" y2="368" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2CF2CA"/>
+      <stop offset="1" stop-color="#16B6FF"/>
+    </linearGradient>
+    <filter id="glow" x="76" y="76" width="360" height="360" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="10"/>
+    </filter>
+  </defs>
+
+  <rect x="32" y="32" width="448" height="448" rx="112" fill="url(#bg)"/>
+  <rect x="32.5" y="32.5" width="447" height="447" rx="111.5" stroke="#2CF2CA" stroke-opacity="0.18"/>
+  <circle cx="256" cy="256" r="176" fill="url(#halo)"/>
+
+  <g opacity="0.45" filter="url(#glow)">
+    <circle cx="256" cy="256" r="132" stroke="url(#accent)" stroke-width="16"/>
+    <path d="M256 96V124" stroke="url(#accent)" stroke-width="12" stroke-linecap="round"/>
+    <path d="M256 388V416" stroke="url(#accent)" stroke-width="12" stroke-linecap="round"/>
+    <path d="M96 256H124" stroke="url(#accent)" stroke-width="12" stroke-linecap="round"/>
+    <path d="M388 256H416" stroke="url(#accent)" stroke-width="12" stroke-linecap="round"/>
+    <path d="M184 352L256 156L328 352" stroke="url(#accent)" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M216 284H296" stroke="url(#accent)" stroke-width="18" stroke-linecap="round"/>
+  </g>
+
+  <circle cx="256" cy="256" r="132" stroke="url(#accent)" stroke-width="16"/>
+  <path d="M256 96V124" stroke="url(#accent)" stroke-width="12" stroke-linecap="round"/>
+  <path d="M256 388V416" stroke="url(#accent)" stroke-width="12" stroke-linecap="round"/>
+  <path d="M96 256H124" stroke="url(#accent)" stroke-width="12" stroke-linecap="round"/>
+  <path d="M388 256H416" stroke="url(#accent)" stroke-width="12" stroke-linecap="round"/>
+  <path d="M184 352L256 156L328 352" stroke="url(#accent)" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M216 284H296" stroke="url(#accent)" stroke-width="18" stroke-linecap="round"/>
+</svg>
