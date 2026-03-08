@@ -40,6 +40,10 @@ class InferenceStrategy(ABC):
         self.output_shape = None
         self.model_names = {}
         self.num_classes = 80
+        self._preprocess_resize_buffer = None
+        self._preprocess_float_buffer = None
+        self._preprocess_input_buffer = None
+        self._input_scale = np.float32(1.0 / 255.0)
 
     @abstractmethod
     def initialize(self) -> bool:
@@ -135,16 +139,42 @@ class InferenceStrategy(ABC):
 
     def _preprocess(self, frame: np.ndarray) -> np.ndarray:
         """通用預處理步驟。"""
-        input_img = cv2.resize(frame, (self.input_shape[3], self.input_shape[2]))
-        input_img = input_img.astype(np.float32) / 255.0
-        input_img = np.transpose(input_img, (2, 0, 1))
-        input_img = np.expand_dims(input_img, axis=0)
-        return np.ascontiguousarray(input_img)
+        input_h, input_w = self.input_shape[2], self.input_shape[3]
+        hwc_shape = (input_h, input_w, 3)
+        nchw_shape = (1, 3, input_h, input_w)
+
+        if (
+            self._preprocess_resize_buffer is None
+            or self._preprocess_resize_buffer.shape != hwc_shape
+        ):
+            self._preprocess_resize_buffer = np.empty(hwc_shape, dtype=np.uint8)
+            self._preprocess_float_buffer = np.empty(hwc_shape, dtype=np.float32)
+            self._preprocess_input_buffer = np.empty(nchw_shape, dtype=np.float32)
+
+        cv2.resize(
+            frame,
+            (input_w, input_h),
+            dst=self._preprocess_resize_buffer,
+            interpolation=cv2.INTER_LINEAR,
+        )
+        np.multiply(
+            self._preprocess_resize_buffer,
+            self._input_scale,
+            out=self._preprocess_float_buffer,
+            casting="unsafe",
+        )
+        self._preprocess_input_buffer[0] = np.transpose(
+            self._preprocess_float_buffer, (2, 0, 1)
+        )
+        return self._preprocess_input_buffer
 
     def cleanup(self) -> None:
         """清理資源。"""
         logger.info(f"{self.__class__.__name__} 資源已釋放")
         self.session = None
+        self._preprocess_resize_buffer = None
+        self._preprocess_float_buffer = None
+        self._preprocess_input_buffer = None
 
 
 class BackendUnavailableStrategy(InferenceStrategy):

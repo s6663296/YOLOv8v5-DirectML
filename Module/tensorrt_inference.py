@@ -62,6 +62,10 @@ class TensorRTStrategy:
         self.stream = None
         self.use_pinned_memory = True  # 使用固定記憶體加速傳輸
         self.use_high_priority_stream = True  # 使用高優先級 stream
+        self._preprocess_resize_buffer = None
+        self._preprocess_float_buffer = None
+        self._preprocess_input_buffer = None
+        self._input_scale = np.float32(1.0 / 255.0)
         
         # YOLO 版本 (用於後處理)
         self.yolo_version = getattr(app_instance, 'selected_yolo_version', 'v8')
@@ -300,11 +304,34 @@ class TensorRTStrategy:
     
     def _preprocess(self, frame: np.ndarray) -> np.ndarray:
         """預處理影像。"""
-        input_img = cv2.resize(frame, (self.input_shape[3], self.input_shape[2]))
-        input_img = input_img.astype(np.float32) / 255.0
-        input_img = np.transpose(input_img, (2, 0, 1))
-        input_img = np.expand_dims(input_img, axis=0)
-        return np.ascontiguousarray(input_img)
+        input_h, input_w = self.input_shape[2], self.input_shape[3]
+        hwc_shape = (input_h, input_w, 3)
+        nchw_shape = (1, 3, input_h, input_w)
+
+        if (
+            self._preprocess_resize_buffer is None
+            or self._preprocess_resize_buffer.shape != hwc_shape
+        ):
+            self._preprocess_resize_buffer = np.empty(hwc_shape, dtype=np.uint8)
+            self._preprocess_float_buffer = np.empty(hwc_shape, dtype=np.float32)
+            self._preprocess_input_buffer = np.empty(nchw_shape, dtype=np.float32)
+
+        cv2.resize(
+            frame,
+            (input_w, input_h),
+            dst=self._preprocess_resize_buffer,
+            interpolation=cv2.INTER_LINEAR,
+        )
+        np.multiply(
+            self._preprocess_resize_buffer,
+            self._input_scale,
+            out=self._preprocess_float_buffer,
+            casting="unsafe",
+        )
+        self._preprocess_input_buffer[0] = np.transpose(
+            self._preprocess_float_buffer, (2, 0, 1)
+        )
+        return self._preprocess_input_buffer
     
     def _infer(self, input_data: np.ndarray) -> np.ndarray:
         """執行 TensorRT 推理 (優化版)。"""
@@ -441,6 +468,9 @@ class TensorRTStrategy:
             self.context = None
             self.engine = None
             self.h_output = None
+            self._preprocess_resize_buffer = None
+            self._preprocess_float_buffer = None
+            self._preprocess_input_buffer = None
             
             logger.info("TensorRT 資源已釋放")
         except Exception as e:
