@@ -1,33 +1,24 @@
-# AI AIMBOT YOLOv8 + YOLOv5
-這是一個基於 YOLOv5/v8 的 AI 輔助瞄準工具。
+﻿# AI AIMBOT MAX v1.0 (YOLOv5/YOLOv8/YOLOv11/YOLOv12)
+
+這是一個基於 YOLO 的 AI 輔助瞄準與即時偵測工具，提供多推理後端、可調式瞄準參數與高效能畫面擷取。
+
 > [!WARNING]
 > **請自行承擔使用風險，不保證您不會被封鎖！**
-
+>
 > [!NOTE]
-> **建議使用 GTX 1070 系列或更高等級的顯示卡，以獲得更穩定流暢的體驗。**
+> **建議使用 GTX 1070 系列或更高等級顯示卡，以獲得更穩定流暢的體驗。**
 
+## 專案特色
 
-## 主要功能
-
-*   **AI 目標偵測**: 使用 ONNX 格式的 YOLO 模型進行即時物件偵測。
-*   **版本支援**: 支援 YOLOv5 和 YOLOv8 兩種架構。
-*   **硬體加速**: 支援 DirectML、CUDA 與 TensorRT（NVIDIA）。
-*   **高度客製化**:
-    *   可載入自訂的 `.onnx` 模型。
-    *   支援匯入與匯出 JSON 格式的設定檔，方便分享與備份。
-    *   提供多項參數調整，包含：
-        *   瞄準範圍
-        *   模型信賴度
-        *   瞄準速度
-        *   目標類別
-*   **即時預覽**:
-    *   獨立的預覽視窗，顯示模型偵測的即時畫面。
-    *   可顯示偵測框、目標資訊與 FPS。
-*   **後座力控制**:
-    *   內建可調整的後座力補償系統。
-*   **使用者友善**:
-    *   圖形化介面，方便操作。
-    *   支援最小化至系統匣，不干擾遊戲畫面。
+- **YOLO 多版本支援**：YOLOv5 / YOLOv8 / YOLOv11 / YOLOv12（ONNX）
+- **多推理後端**：DirectML / CUDA / CPU / TensorRT
+- **多擷取來源**：MSS / DXGI（bettercam）/ OBS UDP 串流
+- **非同步推理管線**：latest-wins 策略降低延遲，提升 FPS
+- **目標選擇與 NMS**：支援信賴度、IOU 閾值與目標類別篩選
+- **瞄準控制**：偏移、速度、預測、PID、側鍵鎖定、自動縮放
+- **後座力控制**：可調 X/Y 強度、延遲、觸發按鍵
+- **視覺化疊加**：預覽視窗、瞄準框、偵測框、FPS/延遲 Overlay
+- **設定管理**：JSON 匯入/匯出、多配置、系統匣最小化
 
 ## 程式介面預覽
 
@@ -36,60 +27,100 @@
   <img src="images/YOLO.png" alt="YOLO預覽" width="350">
 </p>
 
+## 模型與推理後端
+
+| 後端 | UI 顯示 | 模型格式 | 適用 GPU |
+|---|---|---|---|
+| DirectML | DirectML (AMD/Intel/NVIDIA) | `.onnx` | AMD / Intel / NVIDIA |
+| CUDA | CUDA (NVIDIA) | `.onnx` | NVIDIA |
+| CPU | CPU (通用) | `.onnx` | 全平台 |
+| TensorRT | TensorRT (NVIDIA 高效能) | `.engine` | NVIDIA |
+
+模型格式重點：
+
+- DML / CUDA / CPU 使用 `.onnx`
+- TensorRT 使用 `.engine`
+- `.pt` 僅用於轉換，不支援直接推理
+
 ## 系統需求
 
-*   **作業系統**: Windows 10 (版本 1903) 或更新版本
-*   **GPU**: 支援 DirectX 12 的 GPU (AMD, NVIDIA, Intel)
-*   **Python**: 3.10.8
+- **作業系統**：Windows 10/11 64-bit
+- **GPU**：DirectX 12 相容 GPU（DML），或 NVIDIA（CUDA/TRT）
+- **Python**：3.10.x（建議 3.10.8）
 
-## 安裝與執行
+## 擷取模式
 
-1.  **安裝相依套件**:
-    ```bash
-    pip install -r requirements.txt
-    ```
+| 模式 | 說明 | 特點 |
+|---|---|---|
+| MSS | `mss` | 穩定通用的螢幕截圖方式（預設） |
+| DXGI | `dxgi` | 使用 bettercam 高效擷取，適合高 FPS |
+| OBS UDP | `obs` | 使用 OpenCV + FFmpeg 低延遲 UDP 串流 |
 
-2.  **執行程式**:
-    ```bash
-    python main.py
-    ```
+## 快速開始
 
-### TensorRT 模式安裝
+1. 安裝依賴
 
-若要使用 TensorRT 推理後端，請先依照 `TensorRT_安裝指南.md` 完成：
-
-1. TensorRT 10.x (Windows / CUDA 12.x) 安裝
-2. 系統環境變數 `Path` 新增 TensorRT `lib` 路徑
-3. 在 `venv` 安裝 TensorRT wheel 與 `cuda-python`
-4. 將 ONNX 模型轉成 `.engine` 後，在 UI 選擇 `TensorRT (NVIDIA 高效能)`
-
-### 一體化 TensorRT 轉換 GUI
-
-專案已提供整合 ONNX 與 PT 轉換的一體化工具：
-
-- GUI 腳本：`trt_converter_gui.py`
-- 啟動批次檔：`run_trt_converter_gui.bat`
-
-啟動方式：
-
-```bat
-run_trt_converter_gui.bat
+```bash
+pip install -r requirements.txt
 ```
+
+2. 啟動程式
+
+```bash
+python main.py
+```
+
+或直接執行 `run.bat`（使用預設 `venv` 時）。
+
+3. 在 UI 中
+
+- 選擇推理後端與 YOLO 版本
+- 選擇模型檔案（`.onnx` 或 `.engine`）
+- 調整參數後點擊「啟動 YOLO」
+
+## 重要設定要點
+
+- `model_size` 必須是 32 的倍數，且會決定擷取區域大小（以螢幕中心為基準）。
+- 目標類別選單會在 YOLO 啟動後依模型 metadata 建立。
+- 瞄準框顏色會依「目標是否在瞄準範圍內」自動切換。
+- Aimbot 切換熱鍵建議使用單鍵；壓槍觸發鍵支援組合鍵。
+- `auto_scale_aim_range` 會在按住右鍵時縮小瞄準範圍。
+- 切換推理後端時需配合正確模型格式。
+ - CUDA / TRT 請依 `本專案完整安裝教學.md` 安裝對應的 Runtime 與套件。
+
+## TensorRT 轉換工具
+
+專案提供一體化轉換 GUI：
+
+- 腳本：`trt_converter_gui.py`
+- 批次檔：`run_trt_converter_gui.bat`
 
 功能：
 
 - ONNX (`.onnx`) 轉 TensorRT Engine (`.engine`)
-- PyTorch (`.pt`) 直接轉 TensorRT，或先 ONNX 再 TensorRT
-- 支援 FP16/FP32、workspace、verbose 與即時日誌
+- PyTorch (`.pt`) 直接轉 TensorRT，或先 ONNX 再 TRT
+- 支援 FP16/FP32、Workspace、Verbose 與即時日誌
 
-## 使用說明
+## 完整安裝與進階設定
 
-1.  **啟動程式**: 執行 `main.py`。
-2.  **選擇 YOLO 版本**: 在主介面的下拉選單中選擇要使用的 YOLO 版本 (YOLOv5 或 YOLOv8)。
-3.  **載入模型**:
-    *   程式會自動偵測 `Model/` 資料夾下的 `.onnx` 檔案。
-    *   在模型下拉選單中選擇要使用的模型。
-4.  **調整參數**: 根據需求調整介面上的各項參數，例如瞄準範圍、信賴度等。
-5.  **儲存設定**: 點擊「保存當前設定」按鈕以儲存變更。設定會儲存於 `Data/` 資料夾下的 JSON 檔案。
-6.  **啟動/停止 YOLO**: 點擊「啟動 YOLO」按鈕開始執行，再次點擊則停止。
-7.  **預覽視窗**: 透過主介面上的「開啟/關閉 YOLO 預覽」按鈕，可以隨時顯示或隱藏即時預覽畫面。
+請參考 `本專案完整安裝教學.md`，包含：
+
+- DML / CUDA / TensorRT 完整安裝流程
+- 建議分 venv 安裝策略
+- TensorRT 安裝與環境變數設定
+- 常見問題排解
+
+## 目錄結構
+
+- `Data/`：設定檔與配置
+- `Model/`：模型存放（建議放置 `.onnx` 或 `.engine`）
+- `Module/`：核心模組
+- `ui/`：UI 介面檔案
+- `images/`：README 截圖
+- `logs/`：日誌輸出
+- `build_nuitka.bat`：DirectML 版本打包腳本
+- `makcu_app.py`：Makcu 裝置工具（可選）
+
+---
+
+若遇到 TensorRT / CUDA 問題，請先確認依賴與環境變數是否完整。
