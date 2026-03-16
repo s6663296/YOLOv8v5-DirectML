@@ -1,11 +1,11 @@
-﻿# AI AIMBOT MAX v1.0 (YOLOv5/YOLOv8/YOLOv11/YOLOv12)
+# AI AIMBOT MAX v1.0 (YOLOv5/YOLOv8/YOLOv11/YOLOv12)
 
 這是一個基於 YOLO 的 AI 輔助瞄準與即時偵測工具，提供多推理後端、可調式瞄準參數與高效能畫面擷取。
 
 > [!WARNING]
 > **請自行承擔使用風險，不保證您不會被封鎖！**
 >
-> [!NOTE]
+> [!WARNING]
 > **建議使用 GTX 1070 系列或更高等級顯示卡，以獲得更穩定流暢的體驗。**
 
 ## 專案特色
